@@ -1,5 +1,5 @@
 var { NativeModules, Dimensions } = require('react-native');
-var DeviceUtil = NativeModules.DeviceUtil;
+var DeviceUtil = NativeModules.DeviceUtil || { };
 
 class Device {
   constructor() {
@@ -9,15 +9,14 @@ class Device {
     this.deviceName = DeviceUtil.name;
     this.systemName = DeviceUtil.systemName;
     this.systemVersion = DeviceUtil.systemVersion;
-    this.deviceVersion = DeviceUtil.deviceVersion;
   }
 
   isIpad() {
-    return this.model.indexOf('iPad') >= 0;
+    return this.model && this.model.indexOf('iPad') >= 0;
   }
 
   isIphone() {
-    return this.model.indexOf('iPhone') >= 0;
+    return this.model && this.model.indexOf('iPhone') >= 0;
   }
 }
 
